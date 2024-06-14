@@ -24,6 +24,7 @@ const signOut = function () {
       <br />
       <nav>        
         <p><a @click="signOut" style="cursor: pointer;">Sign Out</a></p>
+        <p><RouterLink to="/stores">List Stores</RouterLink></p>
       </nav>      
     </template>
 
