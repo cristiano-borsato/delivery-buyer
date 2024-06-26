@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import SignInForm from '@/components/SignInForm.vue'
 import StoresList from '@/components/StoresList.vue'
 import StoreProducts from '@/components/StoreProducts.vue'
+import ShoppingCart from '@/components/ShoppingCart.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/stores/:storeId/products',
       name: 'StoreProducts',
       component: StoreProducts
+    },
+    {
+      path: '/cart',
+      name: 'ShoppingCart',
+      component: ShoppingCart
     }
   ]
 })

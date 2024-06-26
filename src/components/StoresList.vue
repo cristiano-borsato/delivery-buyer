@@ -41,5 +41,6 @@ function viewDetails(storeId: number) {
       </li>
     </ul>
     <p><RouterLink to="/">Home</RouterLink></p>
+    <p><RouterLink to="/cart">Cart</RouterLink></p>
   </div>
 </template>

@@ -1,5 +1,5 @@
 import { createStorage, type SimpleStorage } from './storage'
-const X_API_KEY = "1MqDNOVN3St6EFhEPmkSOApTbRE="
+export const X_API_KEY = "1MqDNOVN3St6EFhEPmkSOApTbRE="
 
 class Auth {
   private storage: SimpleStorage
@@ -51,34 +51,6 @@ class Auth {
 
     andThen()
   }
-
-  // async signIn(
-  //   email: string,
-  //   password: string,
-  //   onSuccess: () => void,
-  //   onFailure: () => void) {
-  //   const body = {
-  //     login: {
-  //       email: email,
-  //       password: password
-  //     }
-  //   }
-  //   fetch("http://localhost:3000/sign_in", {
-  //     method: "POST",
-  //     headers: {
-  //       "Accept": "application/json",
-  //       "Content-Type": "application/json",
-  //       "X-API-KEY": X_API_KEY
-  //     },
-  //     body: JSON.stringify(body)
-  //   }).then((response) => {
-  //     if (response.ok) {
-  //       this.success(response, onSuccess)
-  //     } else {
-  //       this.failure(response, onFailure)
-  //     }
-  //   })
-  // }
 
   async signIn(
     email: string,
