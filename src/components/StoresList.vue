@@ -40,7 +40,8 @@ function viewDetails(storeId: number) {
         <button @click="viewDetails(store.id)">Detalhes</button>
       </li>
     </ul>
+    <br>
     <p><RouterLink to="/">Home</RouterLink></p>
-    <p><RouterLink to="/cart">Cart</RouterLink></p>
+    <p><RouterLink to="/cart">Carrinho de Compras</RouterLink></p>
   </div>
 </template>

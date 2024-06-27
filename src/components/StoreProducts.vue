@@ -1,50 +1,39 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { Auth } from '../auth'
-import { addToCart } from '../cart'  
+import { ref, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { fetchStoreAndProducts } from '../orders';
+import { addToCart } from '../cart';  
 
-const products = ref([])
-const storeName = ref('')
-const router = useRouter()
-const route = useRoute()
-const storeId = route.params.storeId
+const products = ref([]);
+const storeName = ref('');
+const router = useRouter();
+const route = useRoute();
+const storeId = route.params.storeId;
 
-onMounted(() => { 
-  const auth = new Auth()
-
-  fetch(`http://localhost:3000/stores/${storeId}/products`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      Authorization: `Bearer ${auth.getFallback('token')}`
-    }
-  })
-    .then((response) => response.json())
-    .then((data) => {      
-      storeName.value = data.store.name
-      products.value = data.products.map(product => ({
-        ...product,
-        quantity: 1 // Define a quantidade padrão como 1
-      }))
-    })
-    .catch((error) => {
-      console.error('Error fetching products:', error)
-    })
-})
+onMounted(async () => {
+  try {
+    const data = await fetchStoreAndProducts(storeId);
+    storeName.value = data.store.name;
+    products.value = data.products.map(product => ({
+      ...product,
+      quantity: 1 // Define a quantidade padrão como 1
+    }));
+  } catch (error) {
+    console.error('Error fetching store and products:', error);
+  }
+});
 
 function goBack() {
-  router.push('/stores')
+  router.push('/stores');
 }
 
 function addItemToCart(product) {
   const productWithStore = {
     ...product,
     storeName: storeName.value
-  }
-  addToCart(productWithStore) 
+  };
+  addToCart(productWithStore);
 }
-
 </script>
 
 <template>
@@ -73,8 +62,9 @@ function addItemToCart(product) {
       </tbody>
     </table>
     <br>
-    <button @click="goBack">Voltar às Lojas</button>
-    <router-link to="/cart">Ir para o Carrinho</router-link>
+    <button @click="goBack">Lista de Lojas</button><br>
+    <RouterLink to="/cart">Carrinho de Compras</RouterLink><br>
+    <RouterLink to="/">Home</RouterLink>
   </div>
 </template>
 
